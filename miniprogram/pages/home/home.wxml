@@ -1,0 +1,6 @@
+<!--miniprogram/pages/home/home.wxml-->
+<text class="title">欢迎使用首经贸学习通</text>
+<view class="search-box">
+  <icon hidden="{{iconHidden}}" class="icon-small" type="search" size="14"></icon>
+  <input class="search" bindblur="onBlur" bindfocus="onFocus" placeholder="{{value}}" />
+</view>
