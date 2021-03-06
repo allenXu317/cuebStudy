@@ -1,0 +1,3 @@
+@import './static/icon/font_fuhlsbmoxhc/iconfont.wxss';
+@import './static/icon/font_fuhlsbmoxhc/iconfont-weapp/iconfont-weapp-icon.wxss';
+@import './style/layout.wxss'

@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3514019",
+      "name": "课程表",
+      "font_class": "kechengbiao",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "11269292",
+      "name": "资料",
+      "font_class": "ziliao",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "14453775",
+      "name": "灌水",
+      "font_class": "guanshui",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    },
+    {
+      "icon_id": "16395264",
+      "name": "讨论",
+      "font_class": "biaoqiankuozhan_taolun-284",
+      "unicode": "eb8d",
+      "unicode_decimal": 60301
+    }
+  ]
+}

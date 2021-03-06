@@ -1,0 +1,22 @@
+/* miniprogram/pages/index/index.wxss */
+#login {
+  display: block;
+  /* float: left; */
+  width: 200rpx;
+  height: 200rpx;
+  margin: 350rpx auto;
+  border-radius: 50%;
+  border: 1rpx solid black;
+  background-color: white;
+  line-height: 150rpx;
+}
+.userImage {
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  margin: 350rpx auto;
+  border-radius: 50%;
+  border: 1rpx solid black;
+  /* background-color: white; */
+  /* line-height: 150rpx; */
+}

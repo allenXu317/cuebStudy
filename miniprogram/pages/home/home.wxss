@@ -1,26 +1,97 @@
 /* miniprogram/pages/home/home.wxss */
-.title {
-  display: block;
-  width: 200px;
-  height: 30px;
-  margin: 5px auto;
+.float-left {
+  float: left;
 }
+/*  头部整体 */
+.header {
+  height: 360rpx;
+  border: 1rpx solid rgb(150, 0, 1);
+  box-shadow: 0rpx 1rpx 10rpx rgb(150, 0, 1);
+  border-radius: 30rpx;
+  margin: 10rpx;
+  /* background-color: #D5727D; */
+}
+/* 搜索框样式 */
 .search {
   border:1px solid #797979;
-  height: 45px;
+  height: 107rpx;
   text-align: center;
-  border-radius: 30px;
-  margin: 0 10px;
+  border-radius: 40rpx;
+  margin: 10rpx 23.8rpx;
+  padding-left: 47rpx;
+  color:#797979;
+}
+/* js 数据绑定样式 */
+.search-focus {
+  text-align: left;
+  color:black
 }
 .search:hover{
-  border:1px solid red;
+  border:1rpx solid rgb(150, 0, 1);
 }
 .search-box {
   position: relative;
 }
+/* 图标文字样式 */
 .search-box .icon-small {
   position: absolute;
   top:50%;
-  left:110px;
+  left:280rpx;
   transform: translate(0,-50%)
+}
+/* 导航栏样式 */
+.nav {
+  height: 235rpx;
+}
+.item {
+  position: relative;
+  width: 150rpx;
+  height: 150rpx;
+  margin-left:32.5rpx;
+}
+.t-icon {
+  width: 100%;
+  height: 100%;
+}
+.nav-item {
+  position: absolute;
+  display: block;
+  left: 50%;
+  transform: translate(-50%,0);
+  font-size: 35rpx;
+}
+/* content 部分 */
+.content {
+  height: 500rpx;
+  border: 1rpx solid black;
+}
+.next-class {
+  border: 3rpx solid red;
+  border-radius: 20rpx;
+  box-shadow: 0 10rpx rgb(150, 0, 1);
+}
+.title {
+  display: block;
+  font-weight: bolder;
+}
+.clock {
+  display: block;
+  float: left;
+  width: 200rpx;
+  height: 90rpx;
+  font-size: 40rpx;
+  margin: 10rpx;
+  line-height: 90rpx;
+}
+/* 课程详情样式 */
+.class-info {
+  float: right;
+  width: 490rpx;
+}
+.class-info text {
+  display: block;
+  border: 2rpx solid black;
+  border-radius: 30rpx;
+  text-align: center;
+  margin-bottom: 5rpx;
 }

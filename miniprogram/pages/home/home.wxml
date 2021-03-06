@@ -1,6 +1,42 @@
 <!--miniprogram/pages/home/home.wxml-->
-<text class="title">欢迎使用首经贸学习通</text>
-<view class="search-box">
-  <icon hidden="{{iconHidden}}" class="icon-small" type="search" size="14"></icon>
-  <input class="search" bindblur="onBlur" bindfocus="onFocus" placeholder="{{value}}" />
+<!-- header 开始 -->
+<view class="header clear-float w">
+  <view class="search-box">
+    <icon hidden="{{iconHidden}}" class="icon-small" type="search" size="14"></icon>
+    <input class=" search {{searchClass}}" bindblur="onBlur" bindfocus="onFocus" value="{{value}}" />
+  </view>
+  <view class="nav clear-float">
+    <navigator  class="item float-left" index="{{index}}" url="../schedule/schedule">
+      <icon class="t-icon t-icon-kechengbiao"/><text class="nav-item">课表</text>
+    </navigator>
+    <navigator class="item float-left" index="{{index}}" url="../discuss/discuss">
+      <icon class="t-icon t-icon-biaoqiankuozhan_taolun-284"/> <text class="nav-item">讨论</text>
+    </navigator>
+    <navigator class="item float-left" index="{{index}}" url="../files/files">
+      <icon class="t-icon t-icon-ziliao"/> <text class="nav-item">资料</text>
+    </navigator>
+    <navigator class="item float-left" index="{{index}}" url="../forum/forum">
+      <icon class="t-icon t-icon-guanshui"/> <text class="nav-item">灌水</text>
+    </navigator>
+  </view>
 </view>
+<!-- header 结束 -->
+<!-- content 开始 -->
+<view class="content clear-float w">
+  <view class="next-class clear-float">
+    <text class="title">下节课程：</text>
+    <view class="clock">
+      <text>倒计时</text>
+      <text class="hour">{{nextClassHour}}:</text>
+      <text class="min">{{nextClassMin}}:</text>
+      <text class="second">{{nextClassSecond}}</text>
+    </view>
+    <view class="class-info">
+        <text class="class-name">小程序</text>
+        <text class="class-teacher">周晓磊</text>
+        <text class="class-position">博学楼101</text>
+        <text class="class-time">{{startHour}}:{{startMin}}:{{startSec}}-{{endHour}}:{{endMin}}:{{endSec}}</text>
+    </view>
+  </view>
+</view>
+<!-- content 结束 -->

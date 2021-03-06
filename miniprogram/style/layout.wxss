@@ -1,0 +1,17 @@
+/* 版心 */
+.w {
+  width: 730rpx;
+  margin: 0 auto;
+}
+/* 清除浮动 */
+.clear-float::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  visibility:hidden;
+  clear: both;
+}
+page {
+  background-color:#E0E0F0;
+}

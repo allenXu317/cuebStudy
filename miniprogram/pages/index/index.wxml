@@ -1,0 +1,4 @@
+<!--miniprogram/pages/index/index.wxml-->
+
+<button bindtap="authorize" id="login" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" hidden="{{hiddenBut}}">登录</button>
+<image src="{{userImage}}" class="userImage" hidden="{{hiddenImg}}">xx</image>
