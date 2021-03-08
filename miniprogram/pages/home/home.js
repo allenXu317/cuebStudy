@@ -16,14 +16,21 @@ Page({
     startSec: '00',
     endHour: '22',
     endMin: '00',
-    endSec: '00'
+    endSec: '00',
+    userImg:""
   },
   that: this,
+  app:getApp(),
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.timer();
+    this.code2Session();
+    // 使用footer组件
+    this.setData({
+      userImg:this.app.globalData.userInfo.avatarUrl
+    })
   },
 
   /**
@@ -91,13 +98,7 @@ Page({
   timer: function () {
     let that = this;
     setInterval(function () {
-      console.log(wx.getUserInfo({
-        success: function(res) {
-          var userInfo = res.userInfo
-          var nickName = userInfo.nickName
-          console.log(nickName);
-        }
-      }));
+      // console.log(that.app.globalData.userInfo);
       // let that = that;
       let date = new Date();
       let nowHour = date.getHours();
@@ -125,6 +126,20 @@ Page({
     } else {
       return parseInt(Number(time));
     }
-    
   },
+  code2Session:function() {
+    let that = this;
+    wx.cloud.callFunction({
+      name: 'login',
+      complete: res => {
+        // console.log('callFunction test result: ', res)
+        that.app.globalData.userCode2Session = res;
+      }
+    })
+  },
+  // getUserImg() {
+  //   this.setData({
+  //     userImg:this.app.globalData.userInfo.avatarUrl
+  //   })
+  // }
 })

@@ -14,6 +14,12 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      appID:'wx407919aa22c9d171',
+      appSecret:'0c728e3c26913289f20657c51a4a0373',
+      userID:{},
+      userInfo:{},
+      userCode2Session:{}
+    }
   }
 })

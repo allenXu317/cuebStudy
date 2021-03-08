@@ -5,11 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hiddenBut:true,
-    hiddenImg:true,
-    userImage:''
+    hiddenBut: true,
+    hiddenImg: true,
+    userImage: '',
+    imgClass: 'userImage',
+    butHidden:'login'
   },
-
+  app:getApp(),
   /**
    * 生命周期函数--监听页面加载
    */
@@ -65,56 +67,86 @@ Page({
   onShareAppMessage: function () {
 
   },
+  // 判断是否授权
   authorize: function () {
     let that = this;
+    // 获取用户是否登录
+    wx.checkSession({
+      success () {
+        //session_key 未过期，并且在本生命周期一直有效
+        // console.log("login success");
+        console.log(that.app.userID);
+      },
+      fail () {
+        // session_key 已经失效，需要重新执行登录流程
+        //重新登录
+        console.log("login fail");
+        wx.login({
+          success(res) {
+            if(res.code) {
+              that.app.userID = res;
+              console.log("登录成功 ",res);
+            }
+          },
+          fail(err){
+            console.log("登陆失败 ",err);
+          }
+        }) 
+      }
+    })
     // 获取用户信息
     wx.getSetting({
-     success(res) {
-      // console.log("res", res)
-      if (res.authSetting['scope.userInfo']) {
-       console.log("已授权=====")
-       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-       wx.getUserInfo({
-        success(res) {
-        //  console.log("获取用户信息成功", res)
-         that.setData({
-          userImage:res.userInfo.avatarUrl,
-          hiddenBut:true,
-          hiddenImg:false
-        });
-        that.toHome();
-        },
-        fail(res) {
-         console.log("获取用户信息失败", res)
+      success(res) {
+        // console.log("res", res)
+        if (res.authSetting['scope.userInfo']) {
+          console.log("已授权=====")
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success(res) {
+              that.app.globalData.userInfo = res.userInfo;
+              //  console.log("获取用户信息成功", res)
+              that.setData({
+                userImage: res.userInfo.avatarUrl,
+                imgClass: 'userImage-look',
+                butHidden:'butHidden'
+              });
+              that.toHome();
+            },
+            fail(res) {
+              that.app.globalData.userInfo = {};
+              console.log("获取用户信息失败", res)
+            }
+          })
+        } else {
+          console.log("未授权=====")
+          that.app.globalData.userInfo = {};
+          that.setData({
+            hiddenBut: false
+          })
         }
-       })
-      } else {
-       console.log("未授权=====")
-       that.setData({
-         hiddenBut:false
-       })
-      //  that.showSettingToast("请授权")
-      }
-     },
-     
+      },
     })
   },
-  onGetUserInfo: function(e) {
-    // console.log("xopopop");
+  // 登录按钮的回调函数
+  onGetUserInfo: function (e) {
     // console.log(e.detail.userInfo);
+    this.app.globalData.userInfo = e.detail.userInfo;
     this.setData({
-      userImage:e.detail.userInfo.avatarUrl,
-      hiddenBut:true,
-      hiddenImg:false
+      userImage: e.detail.userInfo.avatarUrl,
+      imgClass: 'userImage-look',
+      butHidden:'butHidden'
     });
     this.toHome();
   },
-  toHome:function() {
-    wx.redirectTo({
-      url: '/pages/home/home',
-      fail(err) {
-        console.log(err);
-      }
-    })
+  // 跳转至首页
+  toHome: function () {
+    setTimeout(function () {
+      wx.redirectTo({
+        url: '/pages/home/home',
+        fail(err) {
+          console.log(err);
+        }
+      })
+    }, 2000)
   }
 })

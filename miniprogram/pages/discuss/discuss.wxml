@@ -1,2 +1,3 @@
 <!--miniprogram/pages/discuss/discuss.wxml-->
 <text>这是讨论页面</text>
+<footer></footer>

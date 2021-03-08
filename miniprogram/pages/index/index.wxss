@@ -9,6 +9,11 @@
   border: 1rpx solid black;
   background-color: white;
   line-height: 150rpx;
+  opacity: 1;
+}
+#butHidden {
+  opacity: 0;
+  transition: all 0.5s;
 }
 .userImage {
   display: block;
@@ -17,6 +22,10 @@
   margin: 350rpx auto;
   border-radius: 50%;
   border: 1rpx solid black;
-  /* background-color: white; */
-  /* line-height: 150rpx; */
+  opacity: 0;
+}
+.userImage-look {
+  /* display: block; */
+  opacity: 1;
+  transition: opacity 1s ease-in;
 }

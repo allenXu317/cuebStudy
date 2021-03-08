@@ -1,2 +1,3 @@
 <!--miniprogram/pages/files/files.wxml-->
 <text>这是资料页面</text>
+<footer></footer>

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "footer":"/components/footer/footer"
+  }
+
 }

@@ -1,2 +1,53 @@
 <!--miniprogram/pages/schedule/schedule.wxml-->
-<text>这是课表</text>
+<!-- header 开始 -->
+<view class="header w">
+  <icon class="header-item search" type="search"></icon>
+  <text class="header-item title">课程表</text>
+  <icon bindtap="addClass" class="header-item add t-icon t-icon-tianjia"></icon>
+</view>
+<!-- header 结束 -->
+<view class="add-first" bindtap="addClass" hidden="{{addFistIsHidden}}">
+  添加第一堂课
+</view>
+<!-- 添加课程页开始 -->
+<scroll-view scroll-y="true" class="inputClass {{addInputClassIsHidden}}" >
+  <icon bindtap="closeInputClass" class="inputClass-close t-icon t-icon-guanbi"></icon>
+  <form class="class-form" catchsubmit="classSubmmit" catchreset="classReset" >
+    <view class="form-item className">
+      <icon class="form-icon t-icon t-icon-kecheng"></icon>
+      <input class="weui-input" type="text" name="className" placeholder="请输入课程名"></input>
+    </view>
+    <view class="form-item teacherName">
+      <icon class="form-icon t-icon t-icon-laoshi"></icon>
+      <input class="weui-input" type="text" name="teacherName" placeholder="请输入老师"></input>
+    </view>
+    <view class="form-item classPosition">
+      <icon class="form-icon t-icon t-icon-didian"></icon>
+      <input class="weui-input" type="text" name="classPosition" placeholder="请输入上课地点"></input>
+    </view>
+    <view class="form-item startTime">
+      <icon class="form-icon t-icon t-icon-kaishi1"></icon>
+      <input class="weui-input" type="number" name="startTime" placeholder="请输入开始节数(1~12)"></input>
+    </view>
+    <view class="form-item endTime">
+      <icon class="form-icon t-icon t-icon-jieshu"></icon>
+      <input class="weui-input" type="number" name="endTime" placeholder="请输入结束节数(1~12)"></input>
+    </view>
+    <view class="form-item weekTime">
+      <icon class="form-icon t-icon t-icon-riqi1"></icon>
+      <input class="weui-input" type="text" name="weekTime" placeholder="请输入周一 ~ 周五"></input>
+    </view>
+    <button size="mini" style="margin: 10rpx 5rpx" type="primary" formType="submit">添加课程</button>
+    <button size="mini" style="margin: 10rpx 5rpx" formType="reset">重置内容</button>
+  </form>
+</scroll-view>
+<!-- 添加课程页结束 -->
+
+
+
+
+
+
+
+<footer user-img="{{userImg}}">
+</footer>

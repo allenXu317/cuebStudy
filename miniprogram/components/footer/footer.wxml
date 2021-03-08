@@ -1,0 +1,6 @@
+<!--miniprogram/components/footer/footer.wxml-->
+<view class="footer clear-float">
+  <view class="but home"><icon  class="footer-icon t-icon t-icon-biaoqiankuozhan_shouye-391"></icon></view>
+  <view class="but photo"><icon class="footer-icon t-icon t-icon-xiangji"></icon></view>
+  <view class="but user"><image src="{{userImg}}" alt="{{userImg}}" class="userImg"></image></view>
+</view>

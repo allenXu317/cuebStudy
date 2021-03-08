@@ -1,0 +1,58 @@
+/* miniprogram/components/footer/footer.wxss */
+@import '../../static/icon/font_fuhlsbmoxhc/iconfont.wxss';
+@import '../../static/icon/font_fuhlsbmoxhc/iconfont-weapp/iconfont-weapp-icon.wxss';
+.footer {
+  display: block;
+  position: fixed;
+  width: 750rpx;
+  height: 100rpx;
+  border: 1rpx solid black;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%,0);
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+}
+
+.but {
+  position: relative;
+  display: block;
+  float: left;
+  width: 240rpx;
+  height: 100%;
+  margin-left: 8rpx;
+  line-height: 100%;
+  text-align: center;
+}
+.footer-icon {
+  position: absolute;
+  width: 90rpx;
+  height: 90rpx;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+
+.userImg {
+  position: absolute;
+  width: 90rpx;
+  height: 90rpx;
+  background-color: white;
+  border-radius: 50%;
+  left:75rpx;
+  bottom: 5rpx;
+  
+}
+/* 头像旋转 */
+@keyframes userImgRotate {
+  0% {
+    transform: rotate(0deg) ;
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+.userImg {
+  animation: 3s userImgRotate infinite linear;
+}
+

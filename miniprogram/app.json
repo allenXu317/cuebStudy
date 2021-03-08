@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/schedule/schedule",
     "pages/index/index",
     "pages/home/home",
-    "pages/schedule/schedule",
     "pages/discuss/discuss",
     "pages/files/files",
     "pages/forum/forum"
@@ -10,7 +10,7 @@
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#E0E0F0",
     "navigationBarTitleText": "首经贸学习通",
     "navigationBarTextStyle": "black"
   },

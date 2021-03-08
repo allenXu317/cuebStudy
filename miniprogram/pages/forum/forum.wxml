@@ -1,2 +1,3 @@
 <!--miniprogram/pages/forum/forum.wxml-->
 <text>这是灌水页面</text>
+<footer></footer>

@@ -63,7 +63,7 @@
 /* content 部分 */
 .content {
   height: 500rpx;
-  border: 1rpx solid black;
+  /* border: 1rpx solid black; */
 }
 .next-class {
   border: 3rpx solid red;

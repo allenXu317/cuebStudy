@@ -40,3 +40,8 @@
   </view>
 </view>
 <!-- content 结束 -->
+<!-- footer 开始 -->
+<!-- 引入footer组件 -->
+<footer user-img="{{userImg}}">
+</footer>
+<!-- footer 结束 -->
