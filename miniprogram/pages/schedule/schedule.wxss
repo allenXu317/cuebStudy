@@ -53,12 +53,72 @@ page {
   box-shadow: inset 0 0 20rpx gray;
 }
 
+/* 课表样式 */
+.schedules {
+  height:1000rpx;
+  margin-top:5rpx;
+  border:1rpx solid black;
+  border-radius: 30rpx;
+  box-shadow: 0 0 15rpx gray;
+}
+
+ /* 表头样式 */
+ .schedules-header {
+   width:100%;
+   height:80rpx;
+   padding-left:5rpx;
+   line-height:80rpx;
+   border-bottom:1rpx solid black;
+ }
+
+ /* 表头月份样式 */
+ .schedules-month {
+   float:left;
+   width:10%;
+   height:100%;
+   /* border-right:1rpx solid black; */
+ }
+ .schedules-week {
+   float:left;
+   width:89%;
+   height:100%;
+   /* border-right:1rpx solid black; */
+ }
+
+ .weekDay {
+  position:relative;
+  float:left;
+  width:13.9%;
+  height:100%;
+  border-left:1rpx solid black;
+  font-size:25rpx;
+ }
+
+ .weekDayText {
+   position:absolute;
+   top:-8rpx;
+   left:18rpx;
+   /* transform:translate(-50%,0); */
+ }
+ .monthDayText {
+  position:absolute;
+  top:20rpx;
+  left:18rpx;
+ }
+
+ .weekToDay {
+   /* background-color: red; */
+   box-shadow:inset 0 0 30rpx gray;
+ }
+
+
+
 /* 添加课程详情页 */
 .inputClass {
   /* display: none; */
   position: absolute;
   width: 600rpx;
-  height: 700rpx;
+  height: 650rpx;
   border: 1rpx solid black;
   background-color: white;
   box-shadow: 0 0 20rpx gray;
@@ -119,9 +179,8 @@ page {
   height: 90rpx;
   top:50rpx;
   right: 10rpx;
-  z-index:999;
+  z-index:1000;
 }
-
 
  /* 背景图片 */
 .inputClass::after {

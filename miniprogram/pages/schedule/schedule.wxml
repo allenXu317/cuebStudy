@@ -10,38 +10,50 @@
   添加第一堂课
 </view>
 <!-- 添加课程页开始 -->
-<scroll-view scroll-y="true" class="inputClass {{addInputClassIsHidden}}" >
+<scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="inputClass {{addInputClassIsHidden}}" >
   <icon bindtap="closeInputClass" class="inputClass-close t-icon t-icon-guanbi"></icon>
   <form class="class-form" catchsubmit="classSubmmit" catchreset="classReset" >
     <view class="form-item className">
       <icon class="form-icon t-icon t-icon-kecheng"></icon>
-      <input class="weui-input" type="text" name="className" placeholder="请输入课程名"></input>
+      <input class="weui-input" type="text" name="className" placeholder="请输入课程名" value="{{valClassName}}"></input>
     </view>
     <view class="form-item teacherName">
       <icon class="form-icon t-icon t-icon-laoshi"></icon>
-      <input class="weui-input" type="text" name="teacherName" placeholder="请输入老师"></input>
+      <input class="weui-input" type="text" name="teacherName" placeholder="请输入老师" value="{{valTeacherName}}"></input>
     </view>
     <view class="form-item classPosition">
       <icon class="form-icon t-icon t-icon-didian"></icon>
-      <input class="weui-input" type="text" name="classPosition" placeholder="请输入上课地点"></input>
+      <input class="weui-input" type="text" name="classPosition" placeholder="请输入上课地点" value="{{valPosition}}"></input>
     </view>
     <view class="form-item startTime">
       <icon class="form-icon t-icon t-icon-kaishi1"></icon>
-      <input class="weui-input" type="number" name="startTime" placeholder="请输入开始节数(1~12)"></input>
+      <input class="weui-input" type="number" name="startTime" placeholder="请输入开始节数(1~12)" value="{{valStartTime}}"></input>
     </view>
     <view class="form-item endTime">
       <icon class="form-icon t-icon t-icon-jieshu"></icon>
-      <input class="weui-input" type="number" name="endTime" placeholder="请输入结束节数(1~12)"></input>
+      <input class="weui-input" type="number" name="endTime" placeholder="请输入结束节数(1~12)" value="{{valEndTime}}"></input>
     </view>
     <view class="form-item weekTime">
       <icon class="form-icon t-icon t-icon-riqi1"></icon>
-      <input class="weui-input" type="text" name="weekTime" placeholder="请输入周一 ~ 周五"></input>
+      <input class="weui-input" type="text" name="weekTime" placeholder="请输入周一 ~ 周五" value="{{valWeekTime}}"></input>
     </view>
     <button size="mini" style="margin: 10rpx 5rpx" type="primary" formType="submit">添加课程</button>
     <button size="mini" style="margin: 10rpx 5rpx" formType="reset">重置内容</button>
   </form>
 </scroll-view>
 <!-- 添加课程页结束 -->
+<!-- 课表展示页开始 -->
+<scroll-view scroll-y="true" class="schedules w clear-float">
+  <view class="schedules-header">
+    <view class="schedules-month">{{classMonth}}月</view>
+    <view class="schedules-week clear-float">
+      <view class="weekDay {{weekToDay[index]}}"  wx:for="{{weekDays}}" ><text class="weekDayText" >{{item}}</text><text class="monthDayText">{{classMonth}}/{{monthDays[index]}}</text></view>
+    </view>
+  </view>
+</scroll-view>
+
+
+<!-- 课表展示页结束 -->
 
 
 

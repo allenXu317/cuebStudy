@@ -4,11 +4,23 @@ Page({
   /**
    * 页面的初始数据
    */
+  
   data: {
+    weekDays:['周一','周二','周三','周四','周五','周六','周日'],
+    monthDays:[],
+    weekToDay:[],
     db: {},
     userImg: '',
     addFistIsHidden: true,
-    addInputClassIsHidden: ''
+    addInputClassIsHidden: '',
+    valClassName:'',
+    valTeacherName:'',
+    valPosition:'',
+    valStartTime:'',
+    valEndTime:'',
+    valWeekTime:'',
+    scrollTop:0,
+    classMonth:0
   },
   app: getApp(),
   /**
@@ -90,8 +102,40 @@ Page({
           that.setData({
             addFistIsHidden: false
           })
+        } else {
+          that.schedulesClass();
         }
       },
+    })
+  },
+  schedulesClass: function() {
+    let that = this;
+    let date = new Date();
+    // 星期
+    let weekDay = date.getDay();
+    console.log(weekDay);
+    this.today = weekDay;
+    // 日期
+    let monthDay = date.getDate();
+    let days = new Array(7);
+    let weekdays = new Array(7);
+    for (let i = 0;i <= weekDay;i++) {
+      days[i] = monthDay - (weekDay - i) + 1;
+      if (i === weekDay - 1) {
+        weekdays[i] = "weekToDay";
+      } else {
+        weekdays[i] = "";
+      }
+    }
+    for (let i = weekDay+1;i <= 6;i++) {
+      days[i] = monthDay + (i - weekDay) + 1;
+      weekdays[i] = "";
+    }
+    console.log(weekdays);
+    this.setData({
+      classMonth:parseInt(date.getMonth()) + 1,
+      monthDays:days,
+      weekToDay:weekdays
     })
   },
   // 添加课表
@@ -100,6 +144,20 @@ Page({
     this.setData({
       addInputClassIsHidden: 'inputClass-show'
     });
+    this.clearClass();
+  },
+  // 初始化添加课程表单:
+  clearClass:function () {
+    // 内容置空、滑倒顶部
+    this.setData({
+      valClassName:'',
+      valTeacherName:'',
+      valPosition:'',
+      valStartTime:'',
+      valEndTime:'',
+      valWeekTime:'',
+      scrollTop:0
+    })
   },
   // 表单添加课程:
   classSubmmit: function (e) {
@@ -147,7 +205,7 @@ Page({
       values.startTime = time[startTime-1];
     }
     // 检查结束时间
-    let endTime = parseInt(values.startTime);
+    let endTime = parseInt(values.endTime);
     if (endTime < 0 || endTime > 12){
       values.endTime = time[11];
     } else {
