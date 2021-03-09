@@ -95,3 +95,80 @@
   text-align: center;
   margin-bottom: 5rpx;
 }
+
+/* 倒计时样式 */
+.time {
+  position: relative;
+  float:left;
+  margin-top: 30rpx;
+  margin-left: 5rpx;
+  perspective: 300rpx;
+  width: 90rpx;
+  height: 114rpx;
+  background-color:rgb(61, 61, 61);
+  border-radius: 10rpx;
+  box-shadow: 0 0 10rpx rgb(61, 61, 61);
+  /* margin: 10rpx auto; */
+}
+
+.sec {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(61, 61, 61);
+  z-index: 10;
+  border-radius: 10rpx;
+}
+
+.next {
+  opacity: 0.8;
+  transform: rotateX(-180deg);
+  transition: all 2s ease-out;
+  backface-visibility: hidden;
+  border-radius: 10rpx;
+}
+
+.top {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  border-bottom: 1rpx solid rgb(108, 108, 108);
+  z-index: 10;
+  border-top-right-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+.bottom {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  border-top:1rpx solid rgb(108, 108, 108);
+  z-index: 10;
+  border-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+}
+.time-content {
+  position: absolute;
+  top:10rpx;
+  left: 50%;
+  transform: translate(-50%,0);
+  font-size: 50rpx;
+  color: white;
+  /* opacity: .8; */
+  z-index: 1;
+  line-height: 186%;
+}
+
+@keyframes next {
+  0% {transform: rotateX(0deg);}
+  50% {transform: rotateX(-30deg);}
+  100% {transform: rotateX(-90deg);}
+}
+
+.nextSec {
+  /* webkit-animation: next 4s 0s infinite; */
+  animation: next infinite;
+  animation-delay: 1.2s;
+  animation-duration: 1s;
+  backface-visibility: hidden;
+}

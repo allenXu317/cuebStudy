@@ -11,16 +11,23 @@ Page({
     nextClassHour: '00',
     nextClassMin: '00',
     nextClassSecond: '00',
+    preClassSecond:'00',
+    preClassHour:'00',
+    preClassMin:'00',
     startHour: '23',
     startMin: '00',
     startSec: '00',
     endHour: '22',
     endMin: '00',
     endSec: '00',
-    userImg:""
+    userImg:"",
+    nextMin:'',
+    nextSec:'',
+    nextHour:'',
   },
   that: this,
   app:getApp(),
+  date:new Date(),
   /**
    * 生命周期函数--监听页面加载
    */
@@ -29,7 +36,8 @@ Page({
     this.code2Session();
     // 使用footer组件
     this.setData({
-      userImg:this.app.globalData.userInfo.avatarUrl
+      userImg:this.app.globalData.userInfo.avatarUrl,
+      // nextSec:'nextSec'
     })
   },
 
@@ -100,6 +108,11 @@ Page({
     setInterval(function () {
       // console.log(that.app.globalData.userInfo);
       // let that = that;
+      that.setData({
+        nextSec:'',
+        nextMin:'',
+        nextHour:'',
+      })
       let date = new Date();
       let nowHour = date.getHours();
       // console.log(nowHour);
@@ -109,14 +122,32 @@ Page({
       // console.log(typeof(that.data.startHour),that.data.startHour);
       let startTime = that.timeStrToTimeNum(that.data.startHour) * 60 * 60 + that.timeStrToTimeNum(that.data.startMin) * 60 + that.timeStrToTimeNum(that.data.startSec);
       // console.log(sum, startTime);
-      let hour = (startTime - sum) / 60 / 60;
-      let min = (startTime - sum) / 60 % 60;
-      let sec = (startTime - sum) % 60;
+      let hour = parseInt((startTime - sum) / 60 / 60);
+      let min = parseInt((startTime - sum) / 60 % 60);
+      let sec = parseInt((startTime - sum) % 60);
       // console.log(hour, min, sec);
+      let nextMin = '';
+      let nextHour = '';
+      sec = (sec<10)?'0'+sec:sec+'';
+      min = (min<10)?'0'+min:min+'';
+      hour = (hour<10)?'0'+hour:hour+'';
+      // console.log(parseInt(min),that.data.nextClassMin);
+      if (min !== that.data.nextClassMin) {
+        nextMin = 'next';
+      }
+      if (hour !== that.data.nextClassHour) {
+        nextHour = 'next';
+      }
       that.setData({
-        nextClassHour: parseInt(hour),
-        nextClassMin: parseInt(min),
-        nextClassSecond: parseInt(sec)
+        nextClassHour: hour,
+        nextClassMin: min,
+        nextClassSecond: sec,
+        nextSec:'next',
+        nextMin:nextMin,
+        nextHour:nextHour,
+        preClassSecond:that.data.nextClassSecond,
+        preClassMin:that.data.nextClassMin,
+        preClassHour:that.data.nextClassHour,
       });
     }, 1000);
   },
