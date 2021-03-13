@@ -5,11 +5,11 @@
 /*  头部整体 */
 .header {
   height: 360rpx;
-  border: 1rpx solid rgb(150, 0, 1);
-  box-shadow: 0rpx 1rpx 10rpx rgb(150, 0, 1);
+  border: 1rpx solid #ffffff;
+  box-shadow: 0rpx 0rpx 10rpx gray;
   border-radius: 30rpx;
-  margin: 10rpx;
-  /* background-color: #D5727D; */
+  margin: 10rpx 10rpx 30rpx 10rpx;
+  background-color: #FFFFFF;
 }
 /* 搜索框样式 */
 .search {
@@ -66,9 +66,10 @@
   /* border: 1rpx solid black; */
 }
 .next-class {
-  border: 3rpx solid red;
+  border: 3rpx solid #FFFFFF;
   border-radius: 20rpx;
-  box-shadow: 0 10rpx rgb(150, 0, 1);
+  box-shadow: 0 0 10rpx gray;
+  background-color: #FFFFFF;
 }
 .title {
   display: block;

@@ -4,23 +4,50 @@ Page({
   /**
    * 页面的初始数据
    */
-  
+
   data: {
-    weekDays:['周一','周二','周三','周四','周五','周六','周日'],
-    monthDays:[],
-    weekToDay:[],
+    contentClass: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    weekDays: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    classColors: [
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '']
+    ],
+    classContents: [
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', ''],
+      ['', '', '', '', '', '', '']
+    ],
+    monthDays: [],
+    weekToDay: [],
     db: {},
     userImg: '',
     addFistIsHidden: true,
     addInputClassIsHidden: '',
-    valClassName:'',
-    valTeacherName:'',
-    valPosition:'',
-    valStartTime:'',
-    valEndTime:'',
-    valWeekTime:'',
-    scrollTop:0,
-    classMonth:0
+    valClassName: '',
+    valTeacherName: '',
+    valPosition: '',
+    valStartTime: '',
+    valEndTime: '',
+    valWeekTime: '',
+    scrollTop: 0,
+    classMonth: 0
   },
   app: getApp(),
   /**
@@ -104,11 +131,13 @@ Page({
           })
         } else {
           that.schedulesClass();
+          that.showClass(res);
+
         }
       },
     })
   },
-  schedulesClass: function() {
+  schedulesClass: function () {
     let that = this;
     let date = new Date();
     // 星期
@@ -119,7 +148,7 @@ Page({
     let monthDay = date.getDate();
     let days = new Array(7);
     let weekdays = new Array(7);
-    for (let i = 0;i <= weekDay;i++) {
+    for (let i = 0; i <= weekDay; i++) {
       days[i] = monthDay - (weekDay - i) + 1;
       if (i === weekDay - 1) {
         weekdays[i] = "weekToDay";
@@ -127,15 +156,55 @@ Page({
         weekdays[i] = "";
       }
     }
-    for (let i = weekDay+1;i <= 6;i++) {
+    for (let i = weekDay + 1; i <= 6; i++) {
       days[i] = monthDay + (i - weekDay) + 1;
       weekdays[i] = "";
     }
-    console.log(weekdays);
+    // console.log(weekdays);
     this.setData({
-      classMonth:parseInt(date.getMonth()) + 1,
-      monthDays:days,
-      weekToDay:weekdays
+      classMonth: parseInt(date.getMonth()) + 1,
+      monthDays: days,
+      weekToDay: weekdays
+    })
+  },
+  showClass: function (resAll) {
+    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '18:30', '19:30', '20:30', '21:30'];
+    let arr = [];
+    for (let i = 0; i < 12; i++) {
+      // 将数组的每一个坑位初始化为数组
+      arr[i] = ['', '', '', '', '', '', ''];
+    }
+    let arrClass = [];
+    for (let i = 0; i < 12; i++) {
+      // 将数组的每一个坑位初始化为数组
+      arrClass[i] = ['', '', '', '', '', '', ''];
+    }
+    console.log(resAll);
+    for (let i = 0; i < resAll.data.length; i++) {
+      console.log(i);
+      let res = resAll.data[i];
+      console.log(res);
+      let startTimeIndex = time.indexOf(res.startTime);
+      console.log("ss",startTimeIndex);
+      let endTimeIndex = time.indexOf(res.endTime) - 1;
+      console.log("eee",endTimeIndex);
+      let weekDayIndex = this.data.weekDays.indexOf(res.weekTime);
+      console.log("week",weekDayIndex);
+      console.log(startTimeIndex, endTimeIndex, weekDayIndex);
+      let classContent = res.className + '@' + res.classPosition;
+      for (let j = 0; j < arr.length; j++) {
+        if (j >= startTimeIndex && j <= endTimeIndex) {
+          arr[j][weekDayIndex] = 'yellow';
+        }
+        if (j == startTimeIndex) {
+          arrClass[j][weekDayIndex] = classContent;
+        }
+      }
+      console.log(i);
+    }
+    this.setData({
+      classColors: arr,
+      classContents:arrClass
     })
   },
   // 添加课表
@@ -147,16 +216,16 @@ Page({
     this.clearClass();
   },
   // 初始化添加课程表单:
-  clearClass:function () {
+  clearClass: function () {
     // 内容置空、滑倒顶部
     this.setData({
-      valClassName:'',
-      valTeacherName:'',
-      valPosition:'',
-      valStartTime:'',
-      valEndTime:'',
-      valWeekTime:'',
-      scrollTop:0
+      valClassName: '',
+      valTeacherName: '',
+      valPosition: '',
+      valStartTime: '',
+      valEndTime: '',
+      valWeekTime: '',
+      scrollTop: 0
     })
   },
   // 表单添加课程:
@@ -173,46 +242,50 @@ Page({
         classPosition: values.classPosition,
         startTime: values.startTime,
         endTime: values.endTime,
-        weekTime:values.weekTime,
+        weekTime: values.weekTime,
       },
       success: function (res) {
         console.log(res);
         that.setData({
-          addInputClassIsHidden:'',
-          addFistIsHidden:true
+          addInputClassIsHidden: '',
+          addFistIsHidden: true
         })
+        that.isEmpty();
       },
-      fail:function(err){
+      fail: function (err) {
         console.log(err);
       }
     })
   },
   // 关闭添加课程表单:
-  closeInputClass:function() {
+  closeInputClass: function () {
     this.setData({
       addInputClassIsHidden: 'inputClass-form-close'
     });
   },
   // 课程表办单验证:
-  confirmClass:function(values) {
+  confirmClass: function (values) {
     // 验证时间:
-    const time = ['08:00','09:00','10:10','11:10','13:30','14:30','15:30','16:30','18:30','19:30','20:30','21:30'];
+    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '18:30', '19:30', '20:30', '21:30'];
     // 检查开始时间
     let startTime = parseInt(values.startTime);
-    if (startTime < 0 || startTime > 12){
+    if (startTime < 0 || startTime > 12) {
       values.startTime = time[11];
     } else {
-      values.startTime = time[startTime-1];
+      values.startTime = time[startTime - 1];
     }
     // 检查结束时间
     let endTime = parseInt(values.endTime);
-    if (endTime < 0 || endTime > 12){
+    if (endTime < 0 || endTime > 12) {
       values.endTime = time[11];
     } else {
-      values.endTime = time[endTime-1];
+      values.endTime = time[endTime - 1];
     }
     console.log(values);
     return values;
+  },
+  tapTest: function () {
+    console.log('xxxxaaa');
   }
 
 })

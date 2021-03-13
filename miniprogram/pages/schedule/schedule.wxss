@@ -55,11 +55,11 @@ page {
 
 /* 课表样式 */
 .schedules {
-  height:1000rpx;
+  /* height:1000rpx; */
   margin-top:5rpx;
   border:1rpx solid black;
   border-radius: 30rpx;
-  box-shadow: 0 0 15rpx gray;
+  box-shadow: 0 0 20rpx gray;
 }
 
  /* 表头样式 */
@@ -111,6 +111,34 @@ page {
    box-shadow:inset 0 0 30rpx gray;
  }
 
+ /* 课表展示样式 */
+ .schedules-contents {
+   height: 950rpx;
+   overflow: hidden;
+ }
+.content {
+  height:8.33%;
+  
+}
+.content-class {
+  float:left;
+  width:10.5%;
+  height: 100%;
+  text-align:center;
+  line-height:74rpx;
+  border-bottom:0.5rpx dotted gray;
+  border-right:0.5rpx solid black
+}
+.class {
+  float:left;
+  width:12.4%;
+  height:100%;
+  border-right:0.1rpx solid gray;
+  border-bottom:0.5rpx dotted gray;
+}
+.class:last-child {
+  border-right:none;
+}
 
 
 /* 添加课程详情页 */
@@ -126,7 +154,7 @@ page {
   left: 50%;
   top: 100rpx;
   transform: translate(-50%, 0);
-  z-index: 1;
+  z-index: 0;
   opacity: 0;
 }
 
@@ -139,7 +167,7 @@ page {
 
 .inputClass-form-close {
   /* display: none; */
-  z-index: 1;
+  z-index: 0;
   opacity: 0;
   transition: all 0.5s ease-out;
 }

@@ -128,23 +128,18 @@ Page({
       // console.log(hour, min, sec);
       let nextMin = '';
       let nextHour = '';
-      sec = (sec<10)?'0'+sec:sec+'';
+      // sec = (sec<10)?'0'+sec:sec+'';
       min = (min<10)?'0'+min:min+'';
       hour = (hour<10)?'0'+hour:hour+'';
       // console.log(parseInt(min),that.data.nextClassMin);
-      if (min !== that.data.nextClassMin) {
-        nextMin = 'next';
-      }
-      if (hour !== that.data.nextClassHour) {
-        nextHour = 'next';
-      }
+      
       that.setData({
         nextClassHour: hour,
-        nextClassMin: min,
-        nextClassSecond: sec,
+        nextClassMin:min,
+        nextClassSecond: (sec<10)?'0'+sec:sec+'',
         nextSec:'next',
-        nextMin:nextMin,
-        nextHour:nextHour,
+        nextMin:(min !== that.data.nextClassMin)?'next':'',
+        nextHour:(hour !== that.data.nextClassHour)?'next':'',
         preClassSecond:that.data.nextClassSecond,
         preClassMin:that.data.nextClassMin,
         preClassHour:that.data.nextClassHour,

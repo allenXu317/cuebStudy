@@ -43,14 +43,22 @@
 </scroll-view>
 <!-- 添加课程页结束 -->
 <!-- 课表展示页开始 -->
-<scroll-view scroll-y="true" class="schedules w clear-float">
+<view  class="schedules w clear-float">
   <view class="schedules-header">
     <view class="schedules-month">{{classMonth}}月</view>
     <view class="schedules-week clear-float">
       <view class="weekDay {{weekToDay[index]}}"  wx:for="{{weekDays}}" ><text class="weekDayText" >{{item}}</text><text class="monthDayText">{{classMonth}}/{{monthDays[index]}}</text></view>
     </view>
   </view>
-</scroll-view>
+  <scroll-view scroll-y="true" class="schedules-contents">
+    <view class="content  clear-float {{i}} " wx:for="{{contentClass}}" wx:for-item="i">
+      <view class="content-class">{{contentClass[index]}}</view>
+      <view class="class {{index}}" bindtap="tapTest" data-tag="{{i}}-{{index}}" wx:for="{{weekDays}}" wx:for-item="j" style="font-size:20rpx; word-wrap:break-word;background-color:{{classColors[i-1][index]}}">{{classContents[i-1][index]}}</view>
+
+      <!-- week-class 的方式索引课程进行添加课显示 -->
+    </view>
+  </scroll-view>
+</view>
 
 
 <!-- 课表展示页结束 -->

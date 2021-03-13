@@ -9,9 +9,9 @@
     "pages/forum/forum"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#F2F2F4",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#E0E0F0",
+    "navigationBarBackgroundColor": "#F2F2F4",
     "navigationBarTitleText": "首经贸学习通",
     "navigationBarTextStyle": "black"
   },
