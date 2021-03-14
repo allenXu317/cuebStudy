@@ -183,7 +183,7 @@ Page({
   },
   // 渲染课程内容
   showClass: function (resAll) {
-    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '18:30', '19:30', '20:30', '21:30'];
+    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
     let arr = [];
     for (let i = 0; i < 12; i++) {
       // 将数组的每一个坑位初始化为数组
@@ -215,6 +215,7 @@ Page({
           arrClass[j][weekDayIndex] = classContent;
         }
       }
+      console.log(arr);
       // console.log(i);
     }
     this.setData({
@@ -243,7 +244,7 @@ Page({
       scrollTop: 0
     })
   },
-  // 表单添加课程 --  数据操作:
+  // 表单添加课程 --  数据库操作:
   classSubmmit: function (e) {
     // console.log(e);
     let values = e.detail.value;
@@ -283,7 +284,7 @@ Page({
   // 课程表办单验证:
   confirmClass: function (values) {
     // 验证时间:
-    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '18:30', '19:30', '20:30', '21:30'];
+    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
     // 检查开始时间
     let startTime = parseInt(values.startTime);
     let startTimeIndex = startTime;
@@ -309,7 +310,7 @@ Page({
   getClassInfo: function (e) {
     // console.log('xxxxaaa');
     // console.log(e);
-    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '18:30', '19:30', '20:30', '21:30'];
+    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
     let timeIndex = e.target.dataset.tag;
     console.log(timeIndex);
     let startTimeIndex = timeIndex.split('-')[0] - 1;
@@ -323,7 +324,7 @@ Page({
       _openid: that.app.globalData.userCode2Session.openid,
       weekTime:that.data.weekDays[weekDayIndex]
     },{
-      endTime: _.gte(time[startTimeIndex + 1]),
+      endTime: _.gte(time[startTimeIndex+1]),
       _openid: that.app.globalData.userCode2Session.openid,
       weekTime:that.data.weekDays[weekDayIndex]
     })).get({

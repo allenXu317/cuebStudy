@@ -62,10 +62,10 @@
       </view> -->
     </view>
     <view class="class-info">
-      <text class="class-name">小程序</text>
-      <text class="class-teacher">周晓磊</text>
-      <text class="class-position">博学楼101</text>
-      <text class="class-time">{{startHour}}:{{startMin}}:{{startSec}}-{{endHour}}:{{endMin}}:{{endSec}}</text>
+      <text class="class-name">{{nextClassName}}</text>
+      <text class="class-teacher">{{nextClassTeacher}}</text>
+      <text class="class-position">{{nextClassPosition}}</text>
+      <text class="class-time">{{startHour}}:{{startMin}}:{{startSec}}  ~  {{endHour}}:{{endMin}}:{{endSec}}</text>
     </view>
   </view>
 </view>
