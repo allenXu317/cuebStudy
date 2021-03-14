@@ -35,7 +35,7 @@
     </view>
     <view class="form-item weekTime">
       <icon class="form-icon t-icon t-icon-riqi1"></icon>
-      <input class="weui-input" type="text" name="weekTime" placeholder="请输入周一 ~ 周五" value="{{valWeekTime}}"></input>
+      <input class="weui-input" type="text" name="weekTime" placeholder="请输入周一 ~ 周日" value="{{valWeekTime}}"></input>
     </view>
     <button size="mini" style="margin: 10rpx 5rpx" type="primary" formType="submit">添加课程</button>
     <button size="mini" style="margin: 10rpx 5rpx" formType="reset">重置内容</button>
@@ -43,7 +43,7 @@
 </scroll-view>
 <!-- 添加课程页结束 -->
 <!-- 课表展示页开始 -->
-<view  class="schedules w clear-float">
+<view  class="schedules w clear-float" hidden="{{schedulesHidden}}">
   <view class="schedules-header">
     <view class="schedules-month">{{classMonth}}月</view>
     <view class="schedules-week clear-float">
@@ -53,13 +53,32 @@
   <scroll-view scroll-y="true" class="schedules-contents">
     <view class="content  clear-float {{i}} " wx:for="{{contentClass}}" wx:for-item="i">
       <view class="content-class">{{contentClass[index]}}</view>
-      <view class="class {{index}}" bindtap="tapTest" data-tag="{{i}}-{{index}}" wx:for="{{weekDays}}" wx:for-item="j" style="font-size:20rpx; word-wrap:break-word;background-color:{{classColors[i-1][index]}}">{{classContents[i-1][index]}}</view>
-
+      <view  class="class {{index}}" bindtap="getClassInfo" data-tag="{{i}}-{{index}}" wx:for="{{weekDays}}" wx:for-item="j" style="font-size:20rpx; word-wrap:break-word;background-color:{{classColors[i-1][index]}}">{{classContents[i-1][index]}}</view>
       <!-- week-class 的方式索引课程进行添加课显示 -->
     </view>
   </scroll-view>
 </view>
-
+<!-- 点击显示课程详情页 -->
+<view class="classInfo {{classInfoShow}}" >
+  <view bindtap="closeClassInfo" class="classInfo-close t-icon t-icon-guanbi"></view>
+  <view class="classInfoItem className">
+    <icon class="info-icon t-icon t-icon-kecheng"></icon>
+    <text class="classInfoText">{{classInfoName}}</text>
+  </view>
+  <view class="classInfoItem classTeacher">
+    <icon class="info-icon t-icon t-icon-laoshi"></icon>
+    <text class="classInfoText">{{classInfoTeacher}}</text>
+  </view>
+  <view class="classInfoItem classPosition">
+    <icon class="form-icon t-icon t-icon-didian"></icon>
+    <text class="classInfoText">{{classInfoPosition}}</text>
+  </view>
+  <view class="classInfoItem classTime">
+    <icon class="form-icon t-icon t-icon-kaishi1"></icon>
+    <text class="classInfoText">{{classInfoTime}}</text>
+    <button bindtap="deleteClass" size="mini" style="margin: 80rpx 2rpx" type="primary" >删除课程</button>
+  </view>
+</view>
 
 <!-- 课表展示页结束 -->
 

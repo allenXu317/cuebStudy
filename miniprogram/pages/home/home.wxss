@@ -4,7 +4,7 @@
 }
 /*  头部整体 */
 .header {
-  height: 360rpx;
+  height: 340rpx;
   border: 1rpx solid #ffffff;
   box-shadow: 0rpx 0rpx 10rpx gray;
   border-radius: 30rpx;
@@ -14,7 +14,7 @@
 /* 搜索框样式 */
 .search {
   border:1px solid #797979;
-  height: 107rpx;
+  height: 80rpx;
   text-align: center;
   border-radius: 40rpx;
   margin: 10rpx 23.8rpx;
@@ -26,9 +26,7 @@
   text-align: left;
   color:black
 }
-.search:hover{
-  border:1rpx solid rgb(150, 0, 1);
-}
+
 .search-box {
   position: relative;
 }
@@ -60,6 +58,13 @@
   transform: translate(-50%,0);
   font-size: 35rpx;
 }
+
+/* 导航栏点击效果 */
+.nav-hover {
+  transform: scale(0.95,0.95);
+  /* box-shadow: 0 0 20rpx gray inset; */
+}
+
 /* content 部分 */
 .content {
   height: 500rpx;

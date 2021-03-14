@@ -56,10 +56,15 @@ page {
 /* 课表样式 */
 .schedules {
   /* height:1000rpx; */
+  position: absolute;
+  height:85%;
+  left:50%;
+  transform: translate(-50%,0);
   margin-top:5rpx;
-  border:1rpx solid black;
-  border-radius: 30rpx;
+  border:1rpx solid #ffffff;
+  border-radius: 20rpx;
   box-shadow: 0 0 20rpx gray;
+  z-index:10;
 }
 
  /* 表头样式 */
@@ -108,12 +113,13 @@ page {
 
  .weekToDay {
    /* background-color: red; */
-   box-shadow:inset 0 0 30rpx gray;
+   box-shadow:inset 0 0 10rpx gray;
+   border-radius: 15rpx;
  }
 
  /* 课表展示样式 */
  .schedules-contents {
-   height: 950rpx;
+   height: 92%;
    overflow: hidden;
  }
 .content {
@@ -138,6 +144,64 @@ page {
 }
 .class:last-child {
   border-right:none;
+}
+
+/* 点击生成课程详情页 */
+.classInfo {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:600rpx;
+  height:400rpx;
+  background-color:#ffffff;
+  opacity:0;
+  z-index:0;
+  transition:all 0.5s ease-in;
+}
+
+.classInfoShow {
+  opacity:.8;
+  z-index:11;
+  transition:all 0.2s ease-in;
+}
+
+.classInfoShow-close {
+  opacity:0;
+  z-index:0;
+  transition:all 0.5s ease-out;
+}
+
+.classInfoItem {
+  position:relative;
+  top:30rpx;
+  left:30rpx;
+  width:75%;
+  height:15%;
+  border-bottom:1rpx dashed gray;
+}
+
+.info-icon {
+  position:absolute;
+  top:50%;
+  left:10rpx;
+  transform:translate(0,-50%);
+}
+
+.classInfoText {
+  position:absolute;
+  top:50%;
+  left:70rpx;
+  transform:translate(0,-50%);
+}
+/* 详情页关闭按钮 */
+.classInfo-close {
+  position:absolute;
+  width:90rpx;
+  height: 90rpx;
+  right:20rpx;
+  top:40rpx;
+  z-index:12;
 }
 
 
@@ -170,6 +234,12 @@ page {
   z-index: 0;
   opacity: 0;
   transition: all 0.5s ease-out;
+}
+
+/* 课程详情点击动画 */
+.classInfoHover {
+  box-shadow:0 0 5rpx gray inset;
+  transform: scale(0.95,0.95);
 }
 
 .class-form {

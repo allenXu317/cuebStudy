@@ -11,23 +11,23 @@ Page({
     nextClassHour: '00',
     nextClassMin: '00',
     nextClassSecond: '00',
-    preClassSecond:'00',
-    preClassHour:'00',
-    preClassMin:'00',
+    preClassSecond: '00',
+    preClassHour: '00',
+    preClassMin: '00',
     startHour: '23',
     startMin: '00',
     startSec: '00',
     endHour: '22',
     endMin: '00',
     endSec: '00',
-    userImg:"",
-    nextMin:'',
-    nextSec:'',
-    nextHour:'',
+    userImg: "",
+    nextMin: '',
+    nextSec: '',
+    nextHour: '',
   },
   that: this,
-  app:getApp(),
-  date:new Date(),
+  app: getApp(),
+  date: new Date(),
   /**
    * 生命周期函数--监听页面加载
    */
@@ -36,7 +36,7 @@ Page({
     this.code2Session();
     // 使用footer组件
     this.setData({
-      userImg:this.app.globalData.userInfo.avatarUrl,
+      userImg: this.app.globalData.userInfo.avatarUrl,
       // nextSec:'nextSec'
     })
   },
@@ -109,9 +109,9 @@ Page({
       // console.log(that.app.globalData.userInfo);
       // let that = that;
       that.setData({
-        nextSec:'',
-        nextMin:'',
-        nextHour:'',
+        nextSec: '',
+        nextMin: '',
+        nextHour: '',
       })
       let date = new Date();
       let nowHour = date.getHours();
@@ -129,20 +129,19 @@ Page({
       let nextMin = '';
       let nextHour = '';
       // sec = (sec<10)?'0'+sec:sec+'';
-      min = (min<10)?'0'+min:min+'';
-      hour = (hour<10)?'0'+hour:hour+'';
+      min = (min < 10) ? '0' + min : min + '';
+      hour = (hour < 10) ? '0' + hour : hour + '';
       // console.log(parseInt(min),that.data.nextClassMin);
-      
       that.setData({
         nextClassHour: hour,
-        nextClassMin:min,
-        nextClassSecond: (sec<10)?'0'+sec:sec+'',
-        nextSec:'next',
-        nextMin:(min !== that.data.nextClassMin)?'next':'',
-        nextHour:(hour !== that.data.nextClassHour)?'next':'',
-        preClassSecond:that.data.nextClassSecond,
-        preClassMin:that.data.nextClassMin,
-        preClassHour:that.data.nextClassHour,
+        nextClassMin: min,
+        nextClassSecond: (sec < 10) ? '0' + sec : sec + '',
+        nextSec: 'next',
+        nextMin: (min !== that.data.nextClassMin) ? 'next' : '',
+        nextHour: (hour !== that.data.nextClassHour) ? 'next' : '',
+        preClassSecond: that.data.nextClassSecond,
+        preClassMin: that.data.nextClassMin,
+        preClassHour: that.data.nextClassHour,
       });
     }, 1000);
   },
@@ -153,7 +152,7 @@ Page({
       return parseInt(Number(time));
     }
   },
-  code2Session:function() {
+  code2Session: function () {
     let that = this;
     wx.cloud.callFunction({
       name: 'login',
