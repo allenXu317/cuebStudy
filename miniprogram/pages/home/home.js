@@ -213,16 +213,29 @@ Page({
         if (res.data.length != 0) {
           for (let k = 0; k < res.data.length; k++) {
             let time = parseInt(res.data[k].startTime);
-            // console.log(time, currentTime);
+            console.log(time, currentTime,parseInt(res.data[k].endTime));
             if (time > currentTime && (time - currentTime) < min) {
               min = time - currentTime;
               minRes = res.data[k];
+            } else if (time <= currentTime && currentTime<=parseInt(res.data[k].endTime)) {
+              console.log("oooo");
+              that.setData({
+                startHour: '--',
+                startMin: '--',
+                endHour: '--',
+                endMin: '--',
+                endSec: '00',
+                startSec: '00',
+                nextClassName: '正在上课',
+                nextClassName: '正在上课',
+                nextClassPosition: '正在上课',
+                nextClassTeacher: '正在上课'
+              })
             }
           }
           // console.log(minRes);
         }
         if (minRes != []) {
-          
           let startTimeArr = minRes.startTime.split(":");
           let endTimeArr = minRes.endTime.split(":");
           that.setData({

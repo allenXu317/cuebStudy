@@ -1,3 +1,18 @@
 <!--miniprogram/pages/discuss/discuss.wxml-->
-<text>这是讨论页面</text>
-<footer></footer>
+<view class="header w">
+  <view hover-class="nav-hover" bindtap="createDicuss" class="header-item createDicuss">
+    <icon class="t-icon t-icon-chuangjianqunliao"></icon>
+    <text class="discuss-text">创建群聊</text>
+  </view>
+  <view hover-class="nav-hover" bindtap="addDicuss" class="header-item addDiscuss">
+    <icon class="t-icon t-icon-woyaojiaru"></icon>
+    <text class="discuss-text">加入群聊</text>
+  </view>
+  <view hover-class="nav-hover" class="header-item myDiscuss">
+    <icon class="t-icon t-icon-A"></icon>
+    <text class="discuss-text">我的群聊</text>
+  </view>
+  <!-- <view>{{testx}}</view> -->
+</view>
+<!-- <view>{{testx}}</view> -->
+<footer id="footer"></footer>

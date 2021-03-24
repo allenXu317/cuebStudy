@@ -16,7 +16,7 @@
       <icon class="t-icon t-icon-ziliao" /> <text class="nav-item">资料</text>
     </navigator>
     <navigator hover-class="nav-hover" class="item float-left" index="{{index}}" url="../forum/forum">
-      <icon class="t-icon t-icon-guanshui" /> <text class="nav-item">灌水</text>
+      <icon class="t-icon t-icon-guanshui" /> <text class="nav-item">发布</text>
     </navigator>
   </view>
 </view>

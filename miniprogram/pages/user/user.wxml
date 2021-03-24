@@ -1,0 +1,9 @@
+<view class="userPage w">
+  <view class="userInfo clear-float">
+    <image class="userImg" src="{{userImg}}"></image>
+    <view class="nickName">{{nickName}}</view>
+  </view>
+  <view class="postNum">发帖</view>
+  <!-- <view></view>
+  <view></view> -->
+</view>

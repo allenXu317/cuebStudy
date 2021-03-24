@@ -20,10 +20,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // getUserImg() {
-    //   this.setData({
-    //     userImg:getApp().globalData.userInfo.avatarUrl
-    //   }) 
-    // }
+    getUserImg() {
+      this.setData({
+        userImg:getApp().globalData.userInfo.avatarUrl
+      }) 
+    }
   }
 })

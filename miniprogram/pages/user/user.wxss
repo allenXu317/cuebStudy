@@ -1,0 +1,17 @@
+/* miniprogram/pages/user.wxss */
+.userPage view{
+  height: 150rpx;
+  background-color: rosybrown;
+  margin-bottom: 30rpx;
+}
+.userImg {
+  
+  float: left;
+  width:100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  /* clear: both; */
+}
+.nickName {
+  float: left;
+}

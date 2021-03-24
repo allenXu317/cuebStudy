@@ -1,26 +1,38 @@
-// miniprogram/pages/discuss/discuss.js
+// miniprogram/pages/user.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    testx:"ppppp"
+    userImg:"",
+    nickName:"",
+    i:0
   },
-
+  app:getApp(),
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(this.app);
+    this.setData({
+      userImg:this.app.globalData.userInfo.avatarUrl,
+      nickName:this.app.globalData.userInfo.nickName
+    })
     
+    setInterval(()=>{
+      let t = this.data.i;
+      this.setData({
+        i:t + 1
+      })
+    },1000)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.footer = this.selectComponent("#footer");
-    this.footer.getUserImg();
+
   },
 
   /**
@@ -63,18 +75,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  // 创建按钮
-  createDicuss:function () {
-    // console.log("pppp");\
-    this.setData({
-      testx:"yyyy"
-    })
-  },
-  // 加入按钮
-  addDicuss:function() {
-    this.setData({
-      testx:"zzzz"
-    })
   }
 })

@@ -55,7 +55,12 @@ Page({
     classInfoTime: '',
     classInfoHidden: true,
     classInfoShow: '',
-    schedulesHidden:true
+    schedulesHidden:true,
+    isEdit:false,
+    updateClassName:'',
+    updateClassPosition:'',
+    updateClassTeacher:'',
+    isScroll:false
   },
   app: getApp(),
   /**
@@ -183,7 +188,7 @@ Page({
   },
   // 渲染课程内容
   showClass: function (resAll) {
-    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
+    const time = ['08:00', '09:00', '10:10', '11:10', '12:00','13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
     let arr = [];
     for (let i = 0; i < 12; i++) {
       // 将数组的每一个坑位初始化为数组
@@ -201,7 +206,7 @@ Page({
       // console.log(res);
       let startTimeIndex = time.indexOf(res.startTime);
       // console.log("ss",startTimeIndex);
-      let endTimeIndex = time.indexOf(res.endTime) - 1;
+      let endTimeIndex = time.indexOf(res.endTime)-1;
       // console.log("eee",endTimeIndex);
       let weekDayIndex = this.data.weekDays.indexOf(res.weekTime);
       // console.log("week",weekDayIndex);
@@ -209,7 +214,7 @@ Page({
       let classContent = res.className + '@' + res.classPosition;
       for (let j = 0; j < arr.length; j++) {
         if (j >= startTimeIndex && j <= endTimeIndex) {
-          arr[j][weekDayIndex] = 'yellow';
+          arr[j][weekDayIndex] = 'skyblue';
         }
         if (j == startTimeIndex) {
           arrClass[j][weekDayIndex] = classContent;
@@ -284,14 +289,14 @@ Page({
   // 课程表办单验证:
   confirmClass: function (values) {
     // 验证时间:
-    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
+    const time = ['08:00', '09:00', '10:10', '11:10','12:00','13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
     // 检查开始时间
     let startTime = parseInt(values.startTime);
-    let startTimeIndex = startTime;
+    let startTimeIndex = startTime-1;
     if (startTime < 0 || startTime > 12) {
       values.startTime = time[11];
     } else {
-      values.startTime = time[startTime - 1];
+      values.startTime = time[startTime-1];
     }
     // 检查结束时间
     let endTime = parseInt(values.endTime);
@@ -310,7 +315,7 @@ Page({
   getClassInfo: function (e) {
     // console.log('xxxxaaa');
     // console.log(e);
-    const time = ['08:00', '09:00', '10:10', '11:10', '13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
+    const time = ['08:00', '09:00', '10:10', '11:10', '12:00','13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
     let timeIndex = e.target.dataset.tag;
     console.log(timeIndex);
     let startTimeIndex = timeIndex.split('-')[0] - 1;
@@ -324,7 +329,7 @@ Page({
       _openid: that.app.globalData.userCode2Session.openid,
       weekTime:that.data.weekDays[weekDayIndex]
     },{
-      endTime: _.gte(time[startTimeIndex+1]),
+      endTime: _.gte((startTimeIndex!=3)?time[startTimeIndex+1]:'12:00'),
       _openid: that.app.globalData.userCode2Session.openid,
       weekTime:that.data.weekDays[weekDayIndex]
     })).get({
@@ -337,7 +342,10 @@ Page({
             classInfoName: res.data[0].className,
             classInfoTeacher: res.data[0].teacherName,
             classInfoPosition: res.data[0].classPosition,
-            classInfoTime: res.data[0].startTime + " ~ " + res.data[0].endTime + " " + res.data[0].weekTime
+            classInfoTime: res.data[0].startTime + " ~ " + res.data[0].endTime + " " + res.data[0].weekTime,
+            valStartTime: time.indexOf(res.data[0].startTime) + 1,
+            valEndTime:(res.data[0].endTime=='12:00')?4:time.indexOf(res.data[0].endTime),
+            valWeekTime:res.data[0].weekTime
           })
         }
       }
@@ -345,9 +353,10 @@ Page({
   },
   // 课程详情关闭
   closeClassInfo: function () {
-    console.log("pppp");
     this.setData({
-      classInfoShow: "classInfoShow-close"
+      classInfoShow: "classInfoShow-close",
+      isEdit:false,
+      isScroll:false
     })
   },
   //删除课程
@@ -370,4 +379,42 @@ Page({
     })
   },
   //编辑课程
+  editClass:function() {
+    console.log("edit");
+    const time = ['08:00', '09:00', '10:10', '11:10','12:00', '13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
+    this.setData({
+      updateClassName:this.data.classInfoName,
+      updateClassPosition:this.data.classInfoPosition,
+      updateClassTeacher:this.data.classInfoTeacher,
+      isEdit:true,
+      isScroll:true
+    })
+  },
+  // 编辑课程  ---- 操作数据库
+  editClassSubmit:function(e) {
+    const time = ['08:00', '09:00', '10:10', '11:10', '12:00','13:30', '14:30', '15:30', '16:30', '17:30','18:30', '19:30', '20:30', '21:30'];
+    let that = this;
+    
+    // 更新信息:
+    console.log(e);
+    let values = e.detail.value; 
+    console.log(values);
+    this.db.where({
+      _openid: that.app.globalData.userCode2Session.openid,
+      className:this.data.classInfoName
+    }).update({
+      data: {
+        className:values.className,
+        classPosition:values.classPosition,
+        teacherName:values.classTeacher,
+        startTime:time[values.startTime-1],
+        endTime:time[values.endTime],
+        weekTime:values.weekTime
+      },
+      success:function () {
+        that.isEmpty();
+        that.closeClassInfo();
+      }
+    })
+  }
 })

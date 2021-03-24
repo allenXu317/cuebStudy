@@ -1,4 +1,4 @@
 <!--miniprogram/pages/index/index.wxml-->
 
-<button id="{{butHidden}}" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">登录</button>
+<button id="{{butHidden}}" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" hidden="{{butDefaultHidden}}">登录</button>
 <image src="{{userImage}}" class="userImage {{imgClass}}"></image>

@@ -10,9 +10,9 @@
   添加第一堂课
 </view>
 <!-- 添加课程页开始 -->
-<scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="inputClass {{addInputClassIsHidden}}" >
+<scroll-view scroll-y="true" scroll-top="{{scrollTop}}" class="inputClass {{addInputClassIsHidden}}">
   <icon bindtap="closeInputClass" class="inputClass-close t-icon t-icon-guanbi"></icon>
-  <form class="class-form" catchsubmit="classSubmmit" catchreset="classReset" >
+  <form class="class-form" catchsubmit="classSubmmit" catchreset="classReset">
     <view class="form-item className">
       <icon class="form-icon t-icon t-icon-kecheng"></icon>
       <input class="weui-input" type="text" name="className" placeholder="请输入课程名" value="{{valClassName}}"></input>
@@ -27,7 +27,8 @@
     </view>
     <view class="form-item startTime">
       <icon class="form-icon t-icon t-icon-kaishi1"></icon>
-      <input class="weui-input" type="number" name="startTime" placeholder="请输入开始节数(1~12)" value="{{valStartTime}}"></input>
+      <input class="weui-input" type="number" name="startTime" placeholder="请输入开始节数(1~12)"
+        value="{{valStartTime}}"></input>
     </view>
     <view class="form-item endTime">
       <icon class="form-icon t-icon t-icon-jieshu"></icon>
@@ -43,42 +44,87 @@
 </scroll-view>
 <!-- 添加课程页结束 -->
 <!-- 课表展示页开始 -->
-<view  class="schedules w clear-float" hidden="{{schedulesHidden}}">
+<view class="schedules w clear-float" hidden="{{schedulesHidden}}">
   <view class="schedules-header">
     <view class="schedules-month">{{classMonth}}月</view>
     <view class="schedules-week clear-float">
-      <view class="weekDay {{weekToDay[index]}}"  wx:for="{{weekDays}}" ><text class="weekDayText" >{{item}}</text><text class="monthDayText">{{classMonth}}/{{monthDays[index]}}</text></view>
+      <view class="weekDay {{weekToDay[index]}}" wx:for="{{weekDays}}"><text class="weekDayText">{{item}}</text><text
+          class="monthDayText">{{classMonth}}/{{monthDays[index]}}</text></view>
     </view>
   </view>
   <scroll-view scroll-y="true" class="schedules-contents">
     <view class="content  clear-float {{i}} " wx:for="{{contentClass}}" wx:for-item="i">
       <view class="content-class">{{contentClass[index]}}</view>
-      <view  class="class {{index}}" bindtap="getClassInfo" data-tag="{{i}}-{{index}}" wx:for="{{weekDays}}" wx:for-item="j" style="font-size:20rpx; word-wrap:break-word;background-color:{{classColors[i-1][index]}}">{{classContents[i-1][index]}}</view>
+      <view class="class {{index}}" bindtap="getClassInfo" data-tag="{{i}}-{{index}}" wx:for="{{weekDays}}"
+        wx:for-item="j" style="font-size:20rpx; word-wrap:break-word;background-color:{{classColors[i-1][index]}}">
+        {{classContents[i-1][index]}}</view>
       <!-- week-class 的方式索引课程进行添加课显示 -->
     </view>
   </scroll-view>
 </view>
 <!-- 点击显示课程详情页 -->
-<view class="classInfo {{classInfoShow}}" >
+<scroll-view scroll-y="{{isScroll}}" class="classInfo {{classInfoShow}}">
   <view bindtap="closeClassInfo" class="classInfo-close t-icon t-icon-guanbi"></view>
-  <view class="classInfoItem className">
-    <icon class="info-icon t-icon t-icon-kecheng"></icon>
-    <text class="classInfoText">{{classInfoName}}</text>
+  <block wx:if="{{!isEdit}}">
+    <view class="classInfoItem className">
+      <icon class="info-icon t-icon t-icon-kecheng"></icon>
+      <text class="classInfoText">{{classInfoName}}</text>
+      <!-- <input class="classInfoText" placeholder="{{classInfoName}}" values="{{updateClassName}}" /> -->
+    </view>
+    <view class="classInfoItem classTeacher">
+      <icon class="info-icon t-icon t-icon-laoshi"></icon>
+      <text class="classInfoText">{{classInfoTeacher}}</text>
+      <!-- <input class="classInfoText" placeholder="{{classInfoTeacher}}" values="{{updateClassTeacher}}" /> -->
+    </view>
+    <view class="classInfoItem classPosition">
+      <icon class="form-icon t-icon t-icon-didian"></icon>
+      <text class="classInfoText">{{classInfoPosition}}</text>
+      <!-- <input class="classInfoText" placeholder="{{classInfoPosition}}" values="{{updateClassPosition}}" /> -->
+    </view>
+    <view class="classInfoItem classTime">
+      <icon class="form-icon t-icon t-icon-kaishi1"></icon>
+      <text class="classInfoText">{{classInfoTime}}</text>
+    </view>
+  </block>
+  <block wx:else>
+    <form class="class-form update-form" catchsubmit="editClassSubmit">
+      <view class="classInfoItem className">
+        <icon class="info-icon t-icon t-icon-kecheng"></icon>
+        <input class="classInfoText" name="className" placeholder="{{classInfoName}}" value="{{updateClassName}}" />
+      </view>
+      <view class="classInfoItem classTeacher">
+        <icon class="info-icon t-icon t-icon-laoshi"></icon>
+        <!-- <text class="classInfoText">{{classInfoTeacher}}</text> -->
+        <input class="classInfoText" name="classTeacher" placeholder="{{classInfoTeacher}}" value="{{updateClassTeacher}}" />
+      </view>
+      <view class="classInfoItem classPosition">
+        <icon class="form-icon t-icon t-icon-didian"></icon>
+        <!-- <text class="classInfoText">{{classInfoPosition}}</text> -->
+        <input class="classInfoText" name="classPosition" placeholder="{{classInfoPosition}}" value="{{updateClassPosition}}" />
+      </view>
+      <view class="classInfoItem classTime">
+        <icon class="form-icon t-icon t-icon-kaishi1"></icon>
+        <input class="classInfoText" name = "startTime" placeholder="{{valStartTime}}" value="{{valStartTime}}"></input>
+      </view>
+      <view class="classInfoItem classTime">
+        <icon class="form-icon t-icon t-icon-jieshu"></icon>
+        <input class="classInfoText" name = "endTime" placeholder="{{valEndTime}}" value="{{valEndTime}}"></input>
+      </view>
+      <view class="classInfoItem classTime">
+        <icon class="form-icon t-icon t-icon-riqi1"></icon>
+        <input class="classInfoText" name = "weekTime" placeholder="{{valWeekTime}}" value="{{valWeekTime}}"></input>
+      </view>
+      <!-- <view wx:else> -->
+      <button form-type="submit" size="mini" style="margin: 80rpx 2rpx" type="primary">确认</button>
+      <!-- </view> -->
+    </form>
+  </block>
+  <view wx:if="{{!isEdit}}">
+    <button bindtap="deleteClass" size="mini" style="margin: 80rpx 2rpx" type="warn">删除课程</button>
+    <button bindtap="editClass" size="mini" style="margin: 80rpx 2rpx" type="primary">编辑课程</button>
   </view>
-  <view class="classInfoItem classTeacher">
-    <icon class="info-icon t-icon t-icon-laoshi"></icon>
-    <text class="classInfoText">{{classInfoTeacher}}</text>
-  </view>
-  <view class="classInfoItem classPosition">
-    <icon class="form-icon t-icon t-icon-didian"></icon>
-    <text class="classInfoText">{{classInfoPosition}}</text>
-  </view>
-  <view class="classInfoItem classTime">
-    <icon class="form-icon t-icon t-icon-kaishi1"></icon>
-    <text class="classInfoText">{{classInfoTime}}</text>
-    <button bindtap="deleteClass" size="mini" style="margin: 80rpx 2rpx" type="primary" >删除课程</button>
-  </view>
-</view>
+
+</scroll-view>
 
 <!-- 课表展示页结束 -->
 

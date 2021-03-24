@@ -270,6 +270,11 @@ page {
   left: 10rpx;
 }
 
+/* 编辑课程表单样式 */
+.update-form {
+  z-index:11;
+}
+
 /* 关闭按钮 */
 .inputClass-close {
   position: fixed;

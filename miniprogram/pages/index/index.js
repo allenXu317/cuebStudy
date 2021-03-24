@@ -9,7 +9,8 @@ Page({
     hiddenImg: true,
     userImage: '',
     imgClass: 'userImage',
-    butHidden:'login'
+    butHidden:'login',
+    butDefaultHidden:true
   },
   app:getApp(),
   /**
@@ -74,7 +75,7 @@ Page({
     wx.checkSession({
       success () {
         //session_key 未过期，并且在本生命周期一直有效
-        // console.log("login success");
+        console.log("login success");
         console.log(that.app.userID);
       },
       fail () {
@@ -108,7 +109,8 @@ Page({
               that.setData({
                 userImage: res.userInfo.avatarUrl,
                 imgClass: 'userImage-look',
-                butHidden:'butHidden'
+                butHidden:'butHidden',
+                butDefaultHidden:true
               });
               that.toHome();
             },
@@ -121,7 +123,7 @@ Page({
           console.log("未授权=====")
           that.app.globalData.userInfo = {};
           that.setData({
-            hiddenBut: false
+            butDefaultHidden: false
           })
         }
       },

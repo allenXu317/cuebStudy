@@ -2,17 +2,17 @@
   "pages": [
     "pages/index/index",
     "pages/schedule/schedule",
-    
     "pages/home/home",
     "pages/discuss/discuss",
     "pages/files/files",
-    "pages/forum/forum"
+    "pages/forum/forum",
+    "pages/user/user"
   ],
   "window": {
     "backgroundColor": "#F2F2F4",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F2F2F4",
-    "navigationBarTitleText": "首经贸学习通",
+    "navigationBarTitleText": "myAPP",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
